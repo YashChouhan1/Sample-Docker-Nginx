@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Server</title>
+</head>
+<body>
+    <h1>User Information</h1>
+    <div id="userInfo"></div>
+
+    <script>
+        // Function to parse URL parameters
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        // Get URL parameters
+        const urlParams = getUrlParams();
+        const userData = JSON.parse(urlParams.data);
+
+        // Display user information
+        const userInfoDiv = document.getElementById('userInfo');
+        userInfoDiv.innerHTML = `
+            <p><strong>Name:</strong> ${userData.name}</p>
+            <p><strong>Email:</strong> ${userData.email}</p>
+            <p><strong>Password:</strong> ${userData.password}</p>
+            <p><strong>Gender:</strong> ${userData.gender}</p>
+            <p><strong>About:</strong> ${userData.about}</p>
+        `;
+    </script>
+</body>
+</html>
